@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+    head
+        include includes/header
+        title Details - Release Version
+    body
+        include includes/nav
+        main
+            .container
+                if objects.length === 0
+                    .alert.alert-warning(role='alert') Objects not available for selected commit
+                if objects.length > 0 && !isPromoted
+                    .alert.alert-primary(role='alert') Objects found on S3, promotion available
+                if objects.length > 0 && isPromoted
+                    .alert.alert-success(role='alert') Current release version
+                h4= 'Commit '
+                    a(href=commit.links.html.href target='_blank')= commit.hash.substring(0, 7)
+                    if version
+                        h5
+                            span.badge.bg-secondary.mb-2= version.name + '-RELEASE (' + version.code + ')'
+                pre= commit.message
+                if objects.length > 0
+                    table.table
+                        thead
+                            tr
+                                th(scope='col') Filename
+                                th(scope='col') Size
+                                th(scope='col') Last modified
+                        tbody
+                          each object in objects
+                            tr
+                              td= object.Key
+                              td= formatBytes(object.Size, 2)
+                              td= object.LastModified.toLocaleString()
+                    if !isPromoted
+                        form(method='post' action=basePath + 'details/' + commit.hash + '/promote')
+                            button.btn.btn-success(type='submit') Promote build to release

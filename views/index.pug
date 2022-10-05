@@ -1,0 +1,35 @@
+doctype html
+html(lang='en')
+    head
+        include includes/header
+        link(rel='stylesheet', type='text/css', href=basePath + 'public/css/index.css')
+        title Index - Release Version
+    body
+        include includes/nav
+        main
+            .container
+                if errorMessage
+                    .alert.alert-danger= errorMessage
+                table.table
+                    thead
+                        tr
+                            th(scope='col')
+                            th(scope='col') Author
+                            th(scope='col') Commit
+                            th(scope='col') Message
+                            th(scope='col') Date
+                            th(scope='col')
+                    tbody
+                        each commit in commits
+                            tr(class=commit.hash === lastPromotedCommit && 'table-success')
+                                td
+                                    img.avatar(src=commit.author.user.links.avatar.href)
+                                td= commit.author.user.display_name
+                                td
+                                    a(href=commit.links.html.href target='_blank')= commit.hash.substring(0, 7)
+                                td
+                                    span.text-overflow-dynamic-container
+                                        span.text-overflow-dynamic-ellipsis= commit.message
+                                td= new Date(commit.date).toLocaleDateString("pl-PL")
+                                td
+                                    a.btn.btn-sm.btn-outline-primary.me-2(href=basePath + 'details/' + commit.hash) Details

@@ -1,0 +1,8 @@
+header.d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-md-between.py-3.mb-4.border-bottom.bg-dark.text-white
+    .container
+        .d-flex.flex-wrap.align-items-center.justify-content-center.justify-content-lg-start
+            a.mb-3.mb-md-0.me-md-auto.text-white.text-decoration-none(href=basePath)
+                span.fs-4 Release Version
+            .text-end
+                form(method='post' action=basePath + 'logout')
+                    button.btn.btn-outline-warning.me-2(type='submit') Logout

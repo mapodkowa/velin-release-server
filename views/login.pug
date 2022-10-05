@@ -1,0 +1,20 @@
+doctype html
+html(lang='en')
+    head
+        include includes/header
+        link(rel='stylesheet', type='text/css', href=basePath + 'public/css/login.css')
+        title Login - Release Version
+    body.text-center
+        main.form-signin
+            form(method='post')
+                if errorMessage
+                    .alert.alert-danger= errorMessage
+                h1.h3.mb-3.fw-normal Release Version
+                .form-floating
+                    input#floatingInput.form-control(type='text' placeholder='exampleuser' name='username')
+                    label(for='floatingInput') Username
+                .form-floating
+                    input#floatingPassword.form-control(type='password' placeholder='Password' name='password')
+                    label(for='floatingPassword') Password
+                button.mt-2.w-100.btn.btn-lg.btn-primary(type='submit') Sign in
+                p.mt-5.mb-3.text-muted Shadiko19 © 2021

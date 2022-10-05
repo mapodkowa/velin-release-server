@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "oclif",
+    "oclif-typescript"
+  ],
+  "rules": {
+    "padded-blocks": "off",
+    "semi": "off",
+    "no-console": "off",
+    "no-await-in-loop": "off",
+    "lines-between-class-members": "off"
+  }
+}
